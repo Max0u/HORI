@@ -1,0 +1,9 @@
+C:\Users\antho\Desktop\Hackathon\tldr\viva\ConsoleTest\bin\Debug\ConsoleTest.exe.config
+C:\Users\antho\Desktop\Hackathon\tldr\viva\ConsoleTest\bin\Debug\ConsoleTest.exe
+C:\Users\antho\Desktop\Hackathon\tldr\viva\ConsoleTest\bin\Debug\ConsoleTest.pdb
+C:\Users\antho\Desktop\Hackathon\tldr\viva\ConsoleTest\bin\Debug\TlDr.Core.dll
+C:\Users\antho\Desktop\Hackathon\tldr\viva\ConsoleTest\bin\Debug\TlDr.Core.pdb
+C:\Users\antho\Desktop\Hackathon\tldr\viva\ConsoleTest\bin\Debug\TlDr.Core.dll.config
+C:\Users\antho\Desktop\Hackathon\tldr\viva\ConsoleTest\obj\Debug\ConsoleTest.csprojResolveAssemblyReference.cache
+C:\Users\antho\Desktop\Hackathon\tldr\viva\ConsoleTest\obj\Debug\ConsoleTest.exe
+C:\Users\antho\Desktop\Hackathon\tldr\viva\ConsoleTest\obj\Debug\ConsoleTest.pdb
