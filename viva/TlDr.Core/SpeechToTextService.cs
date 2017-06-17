@@ -113,6 +113,11 @@ namespace TlDr.Core
 
             _script.DateFin = DateTime.Now;
             _script.WaveName = await _wave.Stop();
+
+            string fileNamePath = string.Format(FileName, i.ToString("000"));
+            string jsonInit = File.ReadAllText(fileNamePath);
+            _scripts = JsonConvert.DeserializeObject<List<Script>>(jsonInit);
+            _scripts = _scripts ?? new List<Script>();
             _scripts.Add(_script);
 
             InitData();
@@ -143,7 +148,8 @@ namespace TlDr.Core
 
             WriteResponseResult(e);
 
-            _script.Sentence = e?.PhraseResponse?.Results?.OrderByDescending(ph => ph.Confidence)?.First()?.DisplayText;
+            if(e?.PhraseResponse?.Results != null)
+                _script.Sentence = e?.PhraseResponse?.Results?.OrderByDescending(ph => ph.Confidence)?.FirstOrDefault()?.DisplayText;
             Stop();
         }
 

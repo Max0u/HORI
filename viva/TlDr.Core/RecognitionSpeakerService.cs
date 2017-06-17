@@ -16,7 +16,7 @@ namespace TlDr.Core
     public class RecognitionSpeakerService
     {
         private const string Key = "63b6ab24c15f4e72a1949bcdaba4ecad";
-        private Dictionary<Guid, string> Guids =  new Dictionary<Guid, string>{
+        private Dictionary<Guid, string> Guids = new Dictionary<Guid, string>{
             {new Guid("3ce9e16f-3fd8-4038-adee-b42efadd0935"), "Max" },
             //{new Guid("b8614233-5dd5-4d6d-9342-6adaac7790c2"), "Junior" },
             //{new Guid(""), "Diana" },
@@ -43,7 +43,7 @@ namespace TlDr.Core
         /// </summary>
         public async void Start(string waveFileName)
         {
-            Tuple<Guid, Microsoft.ProjectOxford.SpeakerRecognition.Contract.Confidence>  result = await CallApi(waveFileName);
+            Tuple<Guid, Microsoft.ProjectOxford.SpeakerRecognition.Contract.Confidence> result = await CallApi(waveFileName);
 
             Trace.WriteLine("#### ");
             if (result?.Item2 == Microsoft.ProjectOxford.SpeakerRecognition.Contract.Confidence.Low
@@ -65,12 +65,16 @@ namespace TlDr.Core
             }
             _wavePersons = _wavePersons ?? new List<Script>();
 
-            Trace.Write("############################ " + waveFileName + " : " + fileNamePath);
+            string personne = result.Item1 == Guid.Empty ? "Unknown" : Guids[result.Item1];
+            Trace.WriteLine("############################ " + waveFileName + " : " + fileNamePath + " ( " + personne + " )");
             IEnumerable<Script> scripts = _wavePersons.Where(o => o.WaveName == waveFileName);
-
-            foreach (var item in scripts)
+            foreach (var item in _wavePersons)
             {
-                item.Person = result.Item1 == Guid.Empty ? "Unknown" : Guids[result.Item1];
+                if(item.WaveName == waveFileName)
+                {
+                    Trace.WriteLine("############################ wav " + item.WaveName + " ( " + personne + " )");
+                    item.Person = personne;
+                }
             }
 
             string jsonWrite = JsonConvert.SerializeObject(_wavePersons);
@@ -86,7 +90,7 @@ namespace TlDr.Core
                 OperationLocation processPollingLocation;
                 using (Stream audioStream = File.OpenRead(waveFileName))
                 {
-                    processPollingLocation = await _serviceClient.IdentifyAsync(audioStream, Guids.Select(o=>o.Key).ToArray(), true);
+                    processPollingLocation = await _serviceClient.IdentifyAsync(audioStream, Guids.Select(o => o.Key).ToArray(), true);
                 }
 
                 IdentificationOperation identificationResponse = null;
