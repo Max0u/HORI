@@ -38,9 +38,9 @@ namespace TlDr.Core
         private Dictionary<Guid, Tuple<string, Color>> Guids = new Dictionary<Guid, Tuple<string, Color>>{
             {new Guid("3ce9e16f-3fd8-4038-adee-b42efadd0935"), new Tuple<string, Color>("MAXIME", Color.FromArgb(255, 12, 179, 171)) },
             //{new Guid("b8614233-5dd5-4d6d-9342-6adaac7790c2"), "Junior" },
-            //{new Guid(""), "Diana" },
+            {new Guid("ad83aa13-2cae-42d1-a028-98cfc6d50f74"),  new Tuple<string, Color>("DIANA", Color.FromArgb(255, 183, 13, 154)) },
             //{new Guid(""), "Jeff" },
-            { new Guid("752d5bae-88cd-4ec1-bbcf-5450f2c261b5"), new Tuple<string, Color>("ANTHONY", Color.FromArgb(255, 183,13,154))  },
+            //{ new Guid("752d5bae-88cd-4ec1-bbcf-5450f2c261b5"), new Tuple<string, Color>("ANTHONY", Color.FromArgb(255, 183,13,154))  },
         };
 
         private SpeakerIdentificationServiceClient _serviceClient;
