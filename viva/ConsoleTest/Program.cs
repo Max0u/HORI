@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,16 +19,18 @@ namespace ConsoleTest
 
         private static async void Loop()
         {
+            RecorderService wave = new RecorderService();
+
             string command = Console.ReadLine();
 
             switch (command)
             {
                 case "Start":
-                    RecorderService.Start(); // Lancer le record de la Wav
+                    wave.Start(); // Lancer le record de la Wav
                     SpeechToTextService.Start(); // Lance le speech to text
                     break;
                 case "Stop":
-                    string fileNameWaveJson = RecorderService.Stop(); // Lancer le record de la Wav
+                    string fileNameWaveJson = wave.Stop(); // Lancer le record de la Wav
                     string fileNameTxt = SpeechToTextService.Stop(); // Lance le speech to text
 
                     TextAnalyzerService.Analyzed -= OnTextAnalysed;
