@@ -10,6 +10,7 @@ namespace ConsoleTest
     class Program
     {
         static SpeechToTextService _speechToTextService;
+        static RecorderService _wave;
         static void Main(string[] args)
         {
             _speechToTextService = new SpeechToTextService();
@@ -23,16 +24,18 @@ namespace ConsoleTest
 
         private static async void Loop()
         {
+            RecorderService wave = new RecorderService();
+
             string command = Console.ReadLine();
 
             switch (command)
             {
                 case "Start":
-                    RecorderService.Start(); // Lancer le record de la Wav
+                    wave.Start(); // Lancer le record de la Wav
                     _speechToTextService.Start(); // Lance le speech to text
                     break;
                 case "Stop":
-                    string fileNameWaveJson = RecorderService.Stop(); // Lancer le record de la Wav
+                    string fileNameWaveJson = await wave.Stop(); // Lancer le record de la Wav
                     string fileNameTxt = await _speechToTextService.Stop(); // Lance le speech to text
 
                     TextAnalyzerService.Analyzed -= OnTextAnalysed;

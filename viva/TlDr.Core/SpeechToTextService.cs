@@ -5,28 +5,20 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
-using Windows.Storage;
-using Windows.UI.Xaml;
 
 namespace TlDr.Core
 {
-    [DataContract]
     public class Script
     {
-        [DataMember]
         public DateTime DateDebut { get; set; }
-        [DataMember]
         public DateTime DateFin { get; set; }
-        [DataMember]
         public string WaveName { get; set; }
-        [DataMember]
         public string Sentence { get; set; }
     }
+
     /// <summary>
     /// 
     /// - Faire les calls API pour Récupérer les phrases
@@ -57,9 +49,11 @@ namespace TlDr.Core
         public const string FileName = "transcript_{0}.txt";
 
         private string _sentence = string.Empty;
-        private int i = 1;
+        private int i = 0;
         private Script _script = null;
         private List<Script> _scripts = null;
+
+        private RecorderService _wave = new RecorderService();
 
         /// <summary>
         /// Ecrire la date de debut dans le fichier
@@ -68,13 +62,14 @@ namespace TlDr.Core
         /// </summary>
         public async void Start()
         {
+            RecognitionSpeakerService.Index = i++;
             _scripts = new List<Script>();
 
             //StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
             //_sampleFile = await storageFolder.CreateFileAsync(string.Format(FileName, i.ToString("000")), CreationCollisionOption.ReplaceExisting);
             //string json = await FileIO.ReadTextAsync(_sampleFile);
             string fileNamePath = string.Format(FileName, i.ToString("000"));
-            if(File.Exists(fileNamePath))
+            if (File.Exists(fileNamePath))
             {
                 string json = File.ReadAllText(fileNamePath);
                 _scripts = JsonConvert.DeserializeObject<List<Script>>(json);
@@ -86,8 +81,7 @@ namespace TlDr.Core
                 fs.Dispose();
             }
 
-            _script = new Script();
-            _script.DateDebut = DateTime.Now;
+            InitData();
 
             if (_micClient == null)
             {
@@ -95,6 +89,13 @@ namespace TlDr.Core
             }
 
             _micClient.StartMicAndRecognition();
+        }
+
+        private void InitData()
+        {
+            _script = new Script();
+            _script.DateDebut = DateTime.Now;
+            _wave.Start();
         }
 
         /// <summary>
@@ -109,11 +110,10 @@ namespace TlDr.Core
                 return string.Format(FileName, i.ToString("000"));
 
             _script.DateFin = DateTime.Now;
-            _script.WaveName = RecorderService.Stop();
+            _script.WaveName = await _wave.Stop();
             _scripts.Add(_script);
 
-            _script = new Script();
-            _script.DateDebut = DateTime.Now;
+            InitData();
 
             string json = JsonConvert.SerializeObject(_scripts);
             //await FileIO.WriteTextAsync(_sampleFile, json);
