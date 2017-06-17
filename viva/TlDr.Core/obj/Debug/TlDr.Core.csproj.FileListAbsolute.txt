@@ -13,9 +13,9 @@ C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core\bin\Debug\Newtonsoft.Json.x
 C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core\bin\Debug\System.Net.Http.Extensions.xml
 C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core\bin\Debug\System.Net.Http.Primitives.xml
 C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core\obj\Debug\TlDr.Core.csproj.App.config
-C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core\obj\Debug\TlDr.Core.csprojResolveAssemblyReference.cache
 C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core\obj\Debug\TlDr.Core.dll
 C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core\obj\Debug\TlDr.Core.pdb
 C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core\bin\Debug\System.Runtime.WindowsRuntime.dll
 C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core\bin\Debug\Windows.winmd
 C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core\bin\Debug\System.Runtime.WindowsRuntime.xml
+C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core\obj\Debug\TlDr.Core.csprojResolveAssemblyReference.cache

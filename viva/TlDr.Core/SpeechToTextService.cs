@@ -8,16 +8,24 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Windows.UI;
 
 namespace TlDr.Core
 {
     public class Script
     {
+        public Guid id { get; set; }
         public DateTime DateDebut { get; set; }
         public DateTime DateFin { get; set; }
         public string WaveName { get; set; }
         public string Person { get; set; }
+        public Color Color { get; set; }
         public string Sentence { get; set; }
+
+        public Script()
+        {
+            id = Guid.NewGuid();
+        }
     }
 
     /// <summary>
@@ -56,6 +64,9 @@ namespace TlDr.Core
 
         private RecorderService _wave = new RecorderService();
 
+        public delegate void ScriptUpdatedHandler(List<Script> scripts);
+        public event ScriptUpdatedHandler ScriptUpdated;
+
         /// <summary>
         /// Ecrire la date de debut dans le fichier
         /// Calls API.
@@ -63,7 +74,7 @@ namespace TlDr.Core
         /// </summary>
         public async void Start()
         {
-            i++;
+            RecognitionSpeakerService.Current.Index = ++i;
             _scripts = new List<Script>();
 
             //StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
@@ -108,25 +119,50 @@ namespace TlDr.Core
         public async Task<string> Stop()
         {
             string num = i.ToString("000");
+
             if (_script.Sentence == null)
+                return null;
+
+            _script.WaveName = await _wave.Stop();
+            if (!await UpdateScripts())
                 return string.Format(FileName, num);
 
+            InitData();
+
+            //i++;
+            return string.Format(FileName, num);
+        }
+
+        public async Task<bool> UpdateScripts()
+        {
+            string num = i.ToString("000");
+            if (_script.Sentence == null)
+                return false;
+
             _script.DateFin = DateTime.Now;
-            _script.WaveName = await _wave.Stop();
 
             string fileNamePath = string.Format(FileName, i.ToString("000"));
             string jsonInit = File.ReadAllText(fileNamePath);
             _scripts = JsonConvert.DeserializeObject<List<Script>>(jsonInit);
             _scripts = _scripts ?? new List<Script>();
-            _scripts.Add(_script);
-
-            InitData();
+            Script s = _scripts.FirstOrDefault(o => o.id == _script.id);
+            if (s == null)
+            {
+                _scripts.Add(_script);
+            }
+            else
+            {
+                s.Sentence = _script.Sentence;
+                s.DateFin = _script.DateFin;
+                s.WaveName = _script.WaveName;
+            }
 
             string json = JsonConvert.SerializeObject(_scripts);
             //await FileIO.WriteTextAsync(_sampleFile, json);
             File.WriteAllText(string.Format(FileName, num), json);
-            //i++;
-            return string.Format(FileName, num);
+            if (ScriptUpdated != null)
+                ScriptUpdated(_scripts);
+            return true;
         }
 
         /// <summary>
@@ -148,7 +184,7 @@ namespace TlDr.Core
 
             WriteResponseResult(e);
 
-            if(e?.PhraseResponse?.Results != null)
+            if (e?.PhraseResponse?.Results != null)
                 _script.Sentence = e?.PhraseResponse?.Results?.OrderByDescending(ph => ph.Confidence)?.FirstOrDefault()?.DisplayText;
             Stop();
         }
@@ -254,6 +290,8 @@ namespace TlDr.Core
         {
             WriteLine("--- Partial result received by OnPartialResponseReceivedHandler() ---");
             WriteLine("{0}", e.PartialResult);
+            _script.Sentence = e.PartialResult;
+            UpdateScripts();
             WriteLine();
         }
 

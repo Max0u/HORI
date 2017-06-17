@@ -244,3 +244,5 @@ C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core.UI\bin\x86\Debug\Assets\Arr
 C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core.UI\bin\x86\Debug\Assets\ArrowWhite.png
 C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core.UI\bin\x86\Debug\Assets\Check.png
 C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core.UI\bin\x86\Debug\Assets\Download.png
+C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core.UI\bin\x86\Debug\NAudio.dll
+C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core.UI\bin\x86\Debug\NAudio.xml

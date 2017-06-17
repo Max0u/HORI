@@ -26,7 +26,7 @@ namespace TlDr.Core
 		{
             if(_sendWave == null)
             {
-                _sendWave = new RecognitionSpeakerService();
+                _sendWave = RecognitionSpeakerService.Current;
             }
 
             while (!_isReadToGo)
@@ -63,7 +63,6 @@ namespace TlDr.Core
             }
             _sendWave.Start(fileName);
             return fileName;
-
         }
 
         private static void OnDataAvailable(object sender, WaveInEventArgs e)

@@ -409,7 +409,7 @@
     <AppxPackagedFile Include="C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core.UWP\bin\Debug\TlDr.Core.UWP.dll">
       <PackagePath>TlDr.Core.UWP.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\antho\Downloads\NAudio-1.8.0-Release\NAudio.dll">
+    <AppxPackagedFile Include="C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core.UWP\bin\Debug\NAudio.dll">
       <PackagePath>NAudio.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\antho\.nuget\packages\Robmikh.CompositionSurfaceFactory\0.7.1\lib\uap10.0\Robmikh.CompositionSurfaceFactory.winmd">
