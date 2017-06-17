@@ -12,11 +12,6 @@ using System.Threading.Tasks;
 
 namespace TlDr.Core
 {
-    public class WavePerson
-    {
-        public string WaveName { get; set; }
-        public string Person { get; set; }
-    }
 
     public class RecognitionSpeakerService
     {
@@ -30,10 +25,8 @@ namespace TlDr.Core
         };
 
         private SpeakerIdentificationServiceClient _serviceClient;
-        private List<WavePerson> _wavePersons;
-
-        public const string FileName = "wavePerson_{0}.txt";
-        public static int Index = 1;
+        private List<Script> _wavePersons;
+        int i = 1; // TODO : prendre celui du SpeechToText
 
         /// <summary>
         /// Envoit de la Wave + Guids (call api)
@@ -52,30 +45,33 @@ namespace TlDr.Core
         {
             Tuple<Guid, Microsoft.ProjectOxford.SpeakerRecognition.Contract.Confidence>  result = await CallApi(waveFileName);
 
+            Trace.WriteLine("#### ");
             if (result?.Item2 == Microsoft.ProjectOxford.SpeakerRecognition.Contract.Confidence.Low
                 || result?.Item1 == Guid.Empty)
             {
                 result = new Tuple<Guid, Microsoft.ProjectOxford.SpeakerRecognition.Contract.Confidence>(Guid.Empty, Microsoft.ProjectOxford.SpeakerRecognition.Contract.Confidence.High);
             }
 
-            string fileNamePath = string.Format(FileName, Index.ToString("000"));
+            string fileNamePath = string.Format(SpeechToTextService.FileName, i.ToString("000"));
             if (File.Exists(fileNamePath))
             {
                 string jsonRead = File.ReadAllText(fileNamePath);
-                _wavePersons = JsonConvert.DeserializeObject<List<WavePerson>>(jsonRead);
+                _wavePersons = JsonConvert.DeserializeObject<List<Script>>(jsonRead);
             }
             else
             {
                 FileStream fs = File.Create(fileNamePath);
                 fs.Dispose();
             }
-            _wavePersons = _wavePersons ?? new List<WavePerson>();
+            _wavePersons = _wavePersons ?? new List<Script>();
 
-            _wavePersons.Add(new WavePerson()
+            Trace.Write("############################ " + waveFileName + " : " + fileNamePath);
+            IEnumerable<Script> scripts = _wavePersons.Where(o => o.WaveName == waveFileName);
+
+            foreach (var item in scripts)
             {
-                WaveName = waveFileName,
-                Person = result.Item1 == Guid.Empty ? "Unknown" : Guids[result.Item1]
-            });
+                item.Person = result.Item1 == Guid.Empty ? "Unknown" : Guids[result.Item1];
+            }
 
             string jsonWrite = JsonConvert.SerializeObject(_wavePersons);
             File.WriteAllText(fileNamePath, jsonWrite);

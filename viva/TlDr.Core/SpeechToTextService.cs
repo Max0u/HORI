@@ -16,6 +16,7 @@ namespace TlDr.Core
         public DateTime DateDebut { get; set; }
         public DateTime DateFin { get; set; }
         public string WaveName { get; set; }
+        public string Person { get; set; }
         public string Sentence { get; set; }
     }
 
@@ -62,7 +63,7 @@ namespace TlDr.Core
         /// </summary>
         public async void Start()
         {
-            RecognitionSpeakerService.Index = i++;
+            i++;
             _scripts = new List<Script>();
 
             //StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
@@ -106,8 +107,9 @@ namespace TlDr.Core
         /// <returns>FileName.txt</returns>
         public async Task<string> Stop()
         {
-            if(_script.Sentence == null)
-                return string.Format(FileName, i.ToString("000"));
+            string num = i.ToString("000");
+            if (_script.Sentence == null)
+                return string.Format(FileName, num);
 
             _script.DateFin = DateTime.Now;
             _script.WaveName = await _wave.Stop();
@@ -117,8 +119,9 @@ namespace TlDr.Core
 
             string json = JsonConvert.SerializeObject(_scripts);
             //await FileIO.WriteTextAsync(_sampleFile, json);
-            File.WriteAllText(string.Format(FileName, i.ToString("000")), json);
-            return string.Format(FileName, i.ToString("000"));
+            File.WriteAllText(string.Format(FileName, num), json);
+            //i++;
+            return string.Format(FileName, num);
         }
 
         /// <summary>

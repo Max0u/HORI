@@ -14,7 +14,7 @@ namespace TlDr.Core
 	{
 		public static WaveInEvent waveSource = null;
 		public static WaveFileWriter waveFile = null;
-		public static int i = 0;
+		public int i = 0;
 		public const string fileName = "wave_{0}.wav";
         private bool _isReadToGo = true;
         private RecognitionSpeakerService _sendWave;
