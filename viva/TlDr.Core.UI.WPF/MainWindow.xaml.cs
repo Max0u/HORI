@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace TlDr.Core.UI.WPF
 {
@@ -44,12 +45,42 @@ namespace TlDr.Core.UI.WPF
 
         private bool _isLaunch = false;
 
-        private void Launch(object sender, RoutedEventArgs e)
+        private async void Launch(object sender, RoutedEventArgs e)
         {
-            if(_isLaunch)
-                _speechToTextService.Stop();
+            if (_isLaunch)
+            {
+                _speechToTextService.Stop().ContinueWith(((taskStr) =>
+                {
+                    List<string> keyWords = TextAnalyzerService.Start(taskStr.Result);
+                    Dispatcher.BeginInvoke((Action)(() =>
+                    {
+                        keywordsControl.Text = @" #" + keyWords.Aggregate((acc, next) => acc + @" #" + next);
+                    }), DispatcherPriority.Normal, null);
+
+                }));
+            }
 
             _speechToTextService.Start();
+            _isLaunch = true;
         }
+
+        private void StopEverything(object sender, RoutedEventArgs e)
+        {
+            _isLaunch = false;
+
+            _speechToTextService.Stop().ContinueWith(((taskStr) =>
+            {
+                List<string> keyWords = TextAnalyzerService.Start(taskStr.Result);
+                Dispatcher.BeginInvoke((Action)(() =>
+                {
+                    keywordsControl.Text = keyWords.Aggregate((acc, next) => acc + @" #" + next);
+                }), DispatcherPriority.Normal, null);
+
+            }));
+        }
+    }
+    public class PutainDObj
+    {
+        public string Value { get; set; }
     }
 }

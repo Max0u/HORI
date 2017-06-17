@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Bitmap.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -113,6 +116,18 @@
       <Project>{f302f875-78ce-4026-b9c9-b6d5bf77b443}</Project>
       <Name>TlDr.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Bitmap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Hori.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Bitmap.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Bitmap.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

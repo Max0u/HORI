@@ -5,8 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TlDr.Core.UI.WPF"
         xmlns:converter="clr-namespace:TlDr.Core.UI.WPF.Converter"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        mc:Ignorable="d" Height="800" Width="1200">
     <Window.Resources>
         <Color x:Key="GreenColor">#23C759</Color>
         <SolidColorBrush Color="{StaticResource GreenColor}" x:Key="GreenBrush" />
@@ -122,7 +121,8 @@
                                 <Image Source="/Assets/Check.png" Width="12" Height="9" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10,0">
                                     <TextBlock Foreground="{StaticResource ForegroundBrush}" Text="PART 1" />
-                                    <TextBlock Foreground="{StaticResource ForegroundBrush}" Text="#marketing #digital #newWorld" TextTrimming="CharacterEllipsis" />
+
+                                    <TextBlock Foreground="{StaticResource ForegroundBrush}" x:Name="keywordsControl" TextTrimming="CharacterEllipsis" />
                                 </StackPanel>
                                 <Image Source="/Assets/Arrow.png" Grid.Column="2" Width="15" Height="10"/>
                             </Grid>
@@ -133,9 +133,13 @@
         </Border>
 
         <Grid Background="White">
-            <Button Style="{StaticResource RoundedGreenButton}" HorizontalAlignment="Right" Margin="62,26" >
+            <StackPanel  HorizontalAlignment="Left" Margin="15,0" VerticalAlignment="Center">
+                <Image Source="/Assets/Bitmap.png" Width="60" Height="60" />
+                <Image Source="/Assets/Hori.png" Width="27" Height="15" />
+            </StackPanel>
+            <Button Style="{StaticResource RoundedGreenButton}" Click="StopEverything" HorizontalAlignment="Right" Margin="62,26" >
                 <StackPanel Orientation="Horizontal" >
-                    <TextBlock Text="FIN DE REUNION" />
+                    <TextBlock Text="END OF THE MEETING" />
                     <Image Source="/Assets/ArrowWhite.png" Width="15" Height="15" Margin="10,0,0,0"/>
                 </StackPanel>
             </Button>

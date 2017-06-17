@@ -29,9 +29,10 @@ namespace TlDr.Core
         /// <param name="fileNameWaveJson"></param>
         /// <returns></returns>
         /// 
-        public static void Start(string fileName)
+        public static List<string> Start(string fileName)
         {
-            string txtJson = "";
+            string txtJson = string.Empty;
+            List<string> result = new List<string>();
             if (File.Exists(fileName))
             {
                 string json = File.ReadAllText(fileName);
@@ -40,9 +41,9 @@ namespace TlDr.Core
                 {
                    txtJson += item.Sentence;
                 }
-                List<string> arr = TextAnalyzerService.KeyWord(txtJson);
+                result = TextAnalyzerService.KeyWord(txtJson);
             }
-
+            return result;
         }
         
         public static List<string> KeyWord(string txt)

@@ -121,7 +121,7 @@ namespace TlDr.Core
             string num = i.ToString("000");
 
             if (_script.Sentence == null)
-                return null;
+                return string.Format(FileName, num);
 
             _script.WaveName = await _wave.Stop();
             if (!await UpdateScripts())

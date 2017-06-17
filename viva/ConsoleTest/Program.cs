@@ -38,9 +38,9 @@ namespace ConsoleTest
                     string fileNameWaveJson = await wave.Stop(); // Lancer le record de la Wav
                     string fileNameTxt = await _speechToTextService.Stop(); // Lance le speech to text
 
-                    TextAnalyzerService.Analyzed -= OnTextAnalysed;
-                    TextAnalyzerService.Analyzed += OnTextAnalysed;
-                    Task doNotAwait = TextAnalyzerService.Start(fileNameTxt, fileNameWaveJson);
+                    //TextAnalyzerService.Analyzed -= OnTextAnalysed;
+                    //TextAnalyzerService.Analyzed += OnTextAnalysed;
+                    //Task doNotAwait = TextAnalyzerService.Start(fileNameTxt, fileNameWaveJson);
                     break;
                 default:
                     break;

@@ -25,3 +25,4 @@ C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core.UI.WPF\bin\Debug\System.Run
 C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core.UI.WPF\bin\Debug\Windows.winmd
 C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core.UI.WPF\bin\Debug\System.Runtime.WindowsRuntime.xml
 C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core.UI.WPF\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core.UI.WPF\bin\Debug\Microsoft.ProjectOxford.Text.dll
