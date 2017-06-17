@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NAudio;
 using NAudio.Wave;
+using System.Threading;
 
 namespace TlDr.Core
 {
@@ -13,21 +14,27 @@ namespace TlDr.Core
 	{
 		public static WaveInEvent waveSource = null;
 		public static WaveFileWriter waveFile = null;
-		public static int i = 1;
+		public static int i = 0;
 		public const string fileName = "wave_{0}.wav";
+        private bool _isReadToGo = true;
 
-		/// <summary>
-		/// Lance le record de la Wave
-		/// </summary>
-		public void Start()
+        /// <summary>
+        /// Lance le record de la Wave
+        /// </summary>
+        public async void Start()
 		{
+            while(!_isReadToGo)
+            {
+                await Task.Delay(100);
+            }
+            i++;
 		    waveSource = new WaveInEvent();
 			waveSource.WaveFormat = new WaveFormat(16000, 1);
 
 			waveSource.DataAvailable += new EventHandler<WaveInEventArgs>(OnDataAvailable);
 			waveSource.RecordingStopped += new EventHandler<StoppedEventArgs>(OnRecordingStopped);
 
-            waveFile = new WaveFileWriter(string.Format(fileName,"001"), waveSource.WaveFormat);
+            waveFile = new WaveFileWriter(string.Format(fileName,i.ToString("000")), waveSource.WaveFormat);
 
             waveSource.StartRecording();
 		}
@@ -39,8 +46,10 @@ namespace TlDr.Core
 		/// <returns>WaveFileName</returns>
 		public string Stop()
 		{
-			waveSource.StopRecording();
-			return fileName;
+            _isReadToGo = false;
+
+            waveSource.StopRecording();
+			return waveFile.Filename;
 
 		}
 
@@ -53,7 +62,7 @@ namespace TlDr.Core
 			}
 		}
 
-		private static void OnRecordingStopped(object sender, StoppedEventArgs e)
+		private void OnRecordingStopped(object sender, StoppedEventArgs e)
 		{
 			if (waveSource != null)
 			{
@@ -66,7 +75,10 @@ namespace TlDr.Core
 				waveFile.Dispose();
 				waveFile = null;
 			}
+
+            _isReadToGo = true;
 		}
 	}
 }
+
 
