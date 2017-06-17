@@ -16,3 +16,6 @@ C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core\obj\Debug\TlDr.Core.csproj.
 C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core\obj\Debug\TlDr.Core.csprojResolveAssemblyReference.cache
 C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core\obj\Debug\TlDr.Core.dll
 C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core\obj\Debug\TlDr.Core.pdb
+C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core\bin\Debug\System.Runtime.WindowsRuntime.dll
+C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core\bin\Debug\Windows.winmd
+C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core\bin\Debug\System.Runtime.WindowsRuntime.xml

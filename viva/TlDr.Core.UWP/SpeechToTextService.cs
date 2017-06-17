@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,8 +28,7 @@ namespace TlDr.Core.UWP
     /// [01/01/2017 09:01:00]
     /// Mais ca c'est une phrase d'une AUTRE personne
     /// [01/01/2017 09:01:00 - Wave003.wav]
-    /// ta
-    /// 
+    ///     
     /// </summary>
     public class SpeechToTextService
     {

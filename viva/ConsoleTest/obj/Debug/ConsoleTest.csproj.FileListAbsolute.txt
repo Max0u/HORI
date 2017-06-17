@@ -7,3 +7,9 @@ C:\Users\antho\Desktop\Hackathon\tldr\viva\ConsoleTest\bin\Debug\TlDr.Core.dll.c
 C:\Users\antho\Desktop\Hackathon\tldr\viva\ConsoleTest\obj\Debug\ConsoleTest.csprojResolveAssemblyReference.cache
 C:\Users\antho\Desktop\Hackathon\tldr\viva\ConsoleTest\obj\Debug\ConsoleTest.exe
 C:\Users\antho\Desktop\Hackathon\tldr\viva\ConsoleTest\obj\Debug\ConsoleTest.pdb
+C:\Users\antho\Desktop\Hackathon\tldr\viva\ConsoleTest\bin\Debug\SpeechClient.dll
+C:\Users\antho\Desktop\Hackathon\tldr\viva\ConsoleTest\bin\Debug\Windows.winmd
+C:\Users\antho\Desktop\Hackathon\tldr\viva\ConsoleTest\bin\Debug\System.Runtime.WindowsRuntime.dll
+C:\Users\antho\Desktop\Hackathon\tldr\viva\ConsoleTest\bin\Debug\Newtonsoft.Json.dll
+C:\Users\antho\Desktop\Hackathon\tldr\viva\ConsoleTest\bin\Debug\System.Runtime.WindowsRuntime.xml
+C:\Users\antho\Desktop\Hackathon\tldr\viva\ConsoleTest\bin\Debug\Newtonsoft.Json.xml

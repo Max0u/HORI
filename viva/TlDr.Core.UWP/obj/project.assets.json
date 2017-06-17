@@ -22611,7 +22611,7 @@
       },
       "Microsoft.ProjectOxford.SpeakerRecognition": {
         "target": "Package",
-        "version": "[1.2.0, )"
+        "version": "1.2.0"
       }
     },
     "frameworks": {
@@ -22620,6 +22620,10 @@
           "Microsoft.NETCore.UniversalWindowsPlatform": {
             "target": "Package",
             "version": "5.2.3"
+          },
+          "Microsoft.ProjectOxford.SpeakerRecognition": {
+            "target": "Package",
+            "version": "1.2.0"
           }
         }
       }

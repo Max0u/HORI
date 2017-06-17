@@ -24,7 +24,7 @@ namespace TlDr.Core.UI
     {
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

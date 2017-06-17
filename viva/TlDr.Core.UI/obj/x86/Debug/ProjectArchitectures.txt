@@ -1,0 +1,2 @@
+C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core.UI\TlDr.Core.UI.csproj;x86
+C:\Users\antho\Desktop\Hackathon\tldr\viva\TlDr.Core.UWP\TlDr.Core.UWP.csproj;neutral

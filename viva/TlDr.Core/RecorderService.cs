@@ -23,7 +23,7 @@ namespace TlDr.Core
         /// <returns>WaveFileName</returns>
         public static string Stop()
         {
-            throw new NotImplementedException();
+            return "tot";
         }
     }
 }
