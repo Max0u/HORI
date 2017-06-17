@@ -11,7 +11,7 @@ namespace TlDr.Core
 {
 	public class RecorderService
 	{
-		public static WaveIn waveSource = null;
+		public static WaveInEvent waveSource = null;
 		public static WaveFileWriter waveFile = null;
 		public static int i = 1;
 		public const string fileName = "wave_{0}.wav";
@@ -19,9 +19,9 @@ namespace TlDr.Core
 		/// <summary>
 		/// Lance le record de la Wave
 		/// </summary>
-		public static void Start()
+		public void Start()
 		{
-			waveSource = new WaveIn();
+		    waveSource = new WaveInEvent();
 			waveSource.WaveFormat = new WaveFormat(16000, 1);
 
 			waveSource.DataAvailable += new EventHandler<WaveInEventArgs>(OnDataAvailable);
@@ -29,7 +29,7 @@ namespace TlDr.Core
 
             waveFile = new WaveFileWriter(string.Format(fileName,"001"), waveSource.WaveFormat);
 
-            waveSource.StopRecording();
+            waveSource.StartRecording();
 		}
 
 		/// <summary>
@@ -37,7 +37,7 @@ namespace TlDr.Core
 		/// Envoit le fichier WaveFileName a RecognitionSpeakerService
 		/// </summary>
 		/// <returns>WaveFileName</returns>
-		public static string Stop()
+		public string Stop()
 		{
 			waveSource.StopRecording();
 			return fileName;
@@ -69,3 +69,4 @@ namespace TlDr.Core
 		}
 	}
 }
+
